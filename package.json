@@ -1,6 +1,6 @@
 {
   "name": "s_node_js_utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Javascript Utils",
   "main": "index.js",
   "scripts": {
