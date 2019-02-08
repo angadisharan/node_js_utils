@@ -11,6 +11,12 @@ var isEmptyString = function(value) {
 }
 module.exports.isEmptyString = isEmptyString
 
+
+var isString = function(value) {
+	return typeof value == "string"
+}
+module.exports.isString = isString
+
 var isNull = function(object) {
 	return object == null || object == undefined
 }
@@ -52,9 +58,68 @@ var extractNumberFromString = function(value) {
 module.exports.extractNumberFromString  = extractNumberFromString
 
 
+//======================================================================
+var timeStamp = function() {
+	return new Date().getTime();
+}
+module.exports.timeStamp  = timeStamp
+//======================================================================
+//======================================================================
+var removeAllSpaces = function(value) {
+	if (isEmptyString(value)) {
+		return ""
+	}
 
+	return value.replace(/\s/g,'')
+}
+module.exports.removeAllSpaces  = removeAllSpaces
+module.exports.removeAllSpace  = removeAllSpaces
+//======================================================================
+//======================================================================
+var replaceSpace = function(string, replacement) {
+	if (isEmptyString(string)) {
+		return ""
+	}
+	if (isNull(replacement) || !isString(replacement)) {
+		replacement = ""
+	}
+	return string.replace(/\s/g, replacement);
+}
+module.exports.replaceSpace  = replaceSpace
+module.exports.replaceSpaceChar  = replaceSpace
+//======================================================================
+//======================================================================
 
+var replaceSpecialChar = function(string, replacement) {
+	if (isEmptyString(string)) {
+		return ""
+	}
+	if (isNull(replacement) || !isString(replacement)) {
+		replacement = ""
+	}
+	return string.replace(/[\~\!\@\#\$\%\^\&\*\(\\)\\\|\?\<\>\{\}\[\]\`\;\:\'\"\/\.\,]/g, replacement);
+}
+module.exports.replaceSpecialChar = replaceSpecialChar
+//======================================================================
+//======================================================================
 
+var formatFileName = function(fileName) {
+	if (isEmptyString(fileName)) {
+		return ""
+	}
+	var dotIndex = fileName.lastIndexOf(".")
+	var extension = ""
+	if (dotIndex != -1) {
+		extension = fileName.substring(dotIndex, fileName.length)
+		fileName = fileName.substring(0, dotIndex)
+	}
+
+	fileName = replaceSpace(fileName, "_");
+	fileName = replaceSpecialChar(fileName,"_");
+
+	return fileName + extension;
+}
+module.exports.formatFileName  = formatFileName
 
 
 
