@@ -103,6 +103,16 @@ module.exports.replaceSpecialChar = replaceSpecialChar
 //======================================================================
 //======================================================================
 
+var removeMultipleSpace = function(string) {
+	if (isEmptyString(string)) {
+		return ""
+	}
+	return string.replace(/\s\s+/g, " ");
+}
+module.exports.removeMultipleSpace = removeMultipleSpace
+//======================================================================
+//======================================================================
+
 var formatFileName = function(fileName) {
 	if (isEmptyString(fileName)) {
 		return ""
@@ -121,9 +131,21 @@ var formatFileName = function(fileName) {
 }
 module.exports.formatFileName  = formatFileName
 
+//======================================================================
+//======================================================================
 
 
+module.exports.wordsCount = wordsCount;
+module.exports.wordCount = wordsCount;
+function wordsCount(my_string) {
+	if (isEmptyString(my_string)) {
+		return -1
+	}
+	my_string = my_string.trim()
+	my_string = removeMultipleSpace(my_string)
 
+	return my_string.split(" ").length
+}
 
 
 

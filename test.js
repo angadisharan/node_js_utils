@@ -6,4 +6,6 @@ var test = "   "
 // console.log(s_validate.isEmptyArray([{}, {}]))
 
 
-console.log(s_validate.extractNumberFromString(""))
+// console.log(s_validate.extractNumberFromString(""))
+
+console.log(s_validate.wordsCount(' hello   , world '))
