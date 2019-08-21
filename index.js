@@ -135,6 +135,7 @@ module.exports.formatFileName  = formatFileName
 //======================================================================
 
 
+// EX : Hello world => 2
 module.exports.wordsCount = wordsCount;
 module.exports.wordCount = wordsCount;
 function wordsCount(my_string) {
@@ -147,7 +148,31 @@ function wordsCount(my_string) {
 	return my_string.split(" ").length
 }
 
+//======================================================================
+//======================================================================
 
+//EX 2nd Floor =>> 2 Floor
+var removeNthFromWord = function(word) {
+    var matchNumber = "[0-9]{1,}"
+    var matchNth = "\\s*(s\\s*t|n\\s*d|r\\s*d|t\\s*h)"
+    numberedTokens = word.match(new RegExp(matchNumber + matchNth))
+    if(s_node_js_utils.isEmptyArray(numberedTokens)) {
+        return word
+    }
+
+    var splits = word.split(numberedTokens[0])
+    var newWord = splits.shift() + numberedTokens[0].replace(new RegExp(matchNth), " ")
+    if(splits.length >= 1) {
+        newWord += splits.join(" ")
+    }
+
+    newWord = newWord.replace(/\s\s+/g, " ")
+    return removeNthFromWord(newWord)
+}
+module.exports.removeNthFromWord = removeNthFromWord
+
+//======================================================================
+//======================================================================
 
 
 
